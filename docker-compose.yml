@@ -12,6 +12,7 @@ services:
       context: ./server1
     ports:
       - 3000:3000
+      - 9229:9229
     volumes:
       - ./server1:/var/www/html/server1
     environment:
