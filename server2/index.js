@@ -1,10 +1,10 @@
 const express = require('express')
 
 const app = express()
-const { PORT = 3001 } = process.env
+const { PORT = 3002 } = process.env
 
 app.get('/', (req, res) => {
-  res.send('server1')
+  res.send('server2')
 })
 
 app.listen(PORT, () => {

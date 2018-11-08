@@ -5,7 +5,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Docker: Attach to Node",
+      "name": "server1",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "nodemon",
+      "program": "${workspaceFolder}/server1/index.js",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "[Docker] server1",
       "type": "node",
       "request": "attach",
       "port": 9229,
@@ -13,6 +23,38 @@
       "localRoot": "${workspaceFolder}/server1/",
       "remoteRoot": "/var/www/html/server1/",
       "protocol": "inspector"
+    },
+    {
+      "name": "server2",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "nodemon",
+      "program": "${workspaceFolder}/server2/index.js",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "[Docker] server2",
+      "type": "node",
+      "request": "attach",
+      "port": 9230,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}/server2/",
+      "remoteRoot": "/var/www/html/server2/",
+      "protocol": "inspector"
+    },
+    {
+      "name": "client",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}/",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run-script",
+        "debug"
+      ],
+      "port": 9231
     }
   ]
 }

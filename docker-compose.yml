@@ -11,24 +11,42 @@ services:
     build:
       context: ./server1
     ports:
-      - 3000:3000
+      - 3001:3001
       - 9229:9229
     volumes:
       - ./server1:/var/www/html/server1
     environment:
-      - PORT=3000
+      - PORT=3001
     # depends_on: 
     #   - db
+    #   - broker
 
-  # server2:
-  #   container_name: full_env_node_server2
-  #   build:
-  #     context: ./server2
-  #   ports:
-  #     - 3001:3001
-  #   volumes:
-  #     - ./server2:/var/www/html/server2
-  #   environment:
-  #     - PORT=3001
+  server2:
+    container_name: full_env_node_server2
+    build:
+      context: ./server2
+    ports:
+      - 3002:3002
+      - 9230:9230
+    volumes:
+      - ./server2:/var/www/html/server2
+    environment:
+      - PORT=3002
+    # depends_on: 
+    #   - db
+    #   - broker
 
-  # client: react
+  client:
+    container_name: full_env_react_client
+    build:
+      context: ./client
+      # args:
+      #   - port=3000
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/var/www/html/client
+    depends_on: 
+      - server1
+      - server2
+   

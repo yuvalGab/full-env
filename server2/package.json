@@ -1,10 +1,10 @@
 {
-  "name": "server1",
+  "name": "server2",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect=0.0.0.0:9229 -L"
+    "start": "nodemon --inspect=0.0.0.0:9230 -L"
   },
   "author": "",
   "license": "ISC",
