@@ -2,29 +2,34 @@ version: '3.7'
 
 services: 
 
-  # db: mongo
-  
+  db:
+    container_name: full_env_mongo_db
+    image: mongo
+    restart: always
+
   # broker: rabbitmq
 
   server1:
     container_name: full_env_node_server1
     build:
       context: ./server1
+    restart: always
     ports:
       - $SERVER1_PORT:$SERVER1_PORT
       - $SERVER1_DEBUG_PORT:$SERVER1_DEBUG_PORT
     volumes:
       - ./server1:/var/www/html/server1
     environment:
-      - PORT=$SERVER1_PORT
-    # depends_on: 
-    #   - db
-    #   - broker
+      - PORT=$SERVER2_PORT
+    depends_on: 
+      - db
+      # - broker
 
   server2:
     container_name: full_env_node_server2
     build:
       context: ./server2
+    restart: always
     ports:
       - $SERVER2_PORT:$SERVER2_PORT
       - $SERVER2_DEBUG_PORT:$SERVER2_DEBUG_PORT
@@ -32,9 +37,9 @@ services:
       - ./server2:/var/www/html/server2
     environment:
       - PORT=$SERVER2_PORT
-    # depends_on: 
-    #   - db
-    #   - broker
+    depends_on: 
+      - db
+      # - broker
 
   client:
     container_name: full_env_react_client
@@ -42,6 +47,7 @@ services:
       context: ./client
       # args:
       #   - port=$CLIENT_PORT
+    restart: always    
     ports:
       - $CLIENT_PORT:$CLIENT_PORT
     environment:
@@ -51,4 +57,3 @@ services:
     depends_on: 
       - server1
       - server2
-   
