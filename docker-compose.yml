@@ -20,7 +20,7 @@ services:
     volumes:
       - ./server1:/var/www/html/server1
     environment:
-      - PORT=$SERVER2_PORT
+      - PORT=$SERVER1_PORT
     depends_on: 
       - db
       # - broker
