@@ -44,6 +44,8 @@ services:
       #   - port=$CLIENT_PORT
     ports:
       - $CLIENT_PORT:$CLIENT_PORT
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     volumes:
       - ./client:/var/www/html/client
     depends_on: 
