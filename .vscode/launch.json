@@ -46,15 +46,10 @@
     },
     {
       "name": "client",
-      "type": "node",
+      "type": "chrome",
       "request": "launch",
-      "cwd": "${workspaceRoot}/",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run-script",
-        "debug"
-      ],
-      "port": 9231
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/client/src"
     }
   ]
 }
