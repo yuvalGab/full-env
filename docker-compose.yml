@@ -7,7 +7,10 @@ services:
     image: mongo
     restart: always
 
-  # broker: rabbitmq
+  broker:
+    container_name: full_env_rabbitmq
+    image: rabbitmq:3.7.8-management
+    restart: always
 
   server1:
     container_name: full_env_node_server1
@@ -23,7 +26,7 @@ services:
       - PORT=$SERVER1_PORT
     depends_on: 
       - db
-      # - broker
+      - broker
 
   server2:
     container_name: full_env_node_server2
@@ -39,7 +42,7 @@ services:
       - PORT=$SERVER2_PORT
     depends_on: 
       - db
-      # - broker
+      - broker
 
   client:
     container_name: full_env_react_client

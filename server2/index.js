@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const amqp = require('amqplib/callback_api')
 
 const { PORT = 3002 } = process.env
 
@@ -11,6 +12,14 @@ db.on('error', console.error.bind(console, 'connection error:'))
 
 db.once('open', () => {
   console.log('server2 connected to db!')
+})
+
+amqp.connect('amqp://broker', (err, conn) => {
+  if (err) {
+    console.log('failed to connect to rabbitmq', err)
+  }
+
+  console.log('successfully connected to rabbitmq')
 })
 
 const app = express()
